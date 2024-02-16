@@ -1,8 +1,8 @@
 # Call of Duty 1 Docker Server
 Run a streamlined Call of Duty 1 server within a Docker container, allowing you the flexibility to choose the desired version.
 
-# How to run a server
-
+# Setup the server
+From the project root:
 1. Clone or download this repository on your host machine.
 1. Run **`./install.sh <version>`** to download the game files for your desired version (e.g., **`1.1`**, **`1.2`**, **`1.3`**, **`1.4`** or **`1.5`**).
    - e.g **`./install.sh 1.5`**
@@ -13,3 +13,26 @@ Run a streamlined Call of Duty 1 server within a Docker container, allowing you 
    - in the **`command`** directive you can modify the execution parameters.
 1. (Optional) If you need to activate punkbuster:
    1. a
+
+# Launch the server
+From the project root:
+``` bash
+docker-compose up -d
+```
+
+# Server interactions
+From the project root you can:
+- Restart server:
+``` bash
+docker-compose restart
+```
+
+- Tail the server logs:
+``` bash
+docker-compose logs cod1server # being cod1server the name of the container
+```
+
+- Stop server completely
+``` bash
+docker-compose down
+```
