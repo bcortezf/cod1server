@@ -36,3 +36,10 @@ docker-compose logs cod1server # being cod1server the name of the container
 ``` bash
 docker-compose down
 ```
+
+# Troubleshooting
+
+```
+server_1  | Sys_Error: Couldn't load default_mp.cfg.  Make sure Call of Duty is run from the correct folder.
+```
+**Make sure you have files in your main folder. `default_mp.cfg` is usually inside `localized_*` files.**
