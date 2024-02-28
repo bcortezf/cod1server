@@ -9,8 +9,8 @@ services:
     #container_name: cod1_server
     restart: unless-stopped
     ports:
-      - "20501:20500/udp"
-      - "20511:20510/udp"
+      #- "20501:20500/udp"
+      #- "20511:20510/udp"
       - "20020:28960/tcp"
       - "20020:28960/udp"
     command: [
