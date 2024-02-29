@@ -3,16 +3,13 @@ Run a streamlined Call of Duty 1 server within a Docker container, allowing you 
 
 # Setup the server
 From the project root:
-1. Clone or download this repository on your host machine.
-1. Run **`./install.sh <version>`** to download the game files for your desired version (e.g., **`1.1`**, **`1.2`**, **`1.3`**, **`1.4`** or **`1.5`**).
-   - e.g **`./install.sh 1.5`**
-1. Edit the config file located in **`codserver/main/config.cfg`** to suit your needs
-   - Modify the file as you like, remember to change server_name, slots, etc.
+1. Clone this repository on your host machine with the name you want.
+   1. e.g **`git clone https://github.com/bcortezf/cod1server.git tdm`**, tdm will be the folder name
+1. Install your desired version with **`./install.sh <version>`**.  Available versions: **`1.1` `1.2` `1.3` `1.4` `1.5`**
+1. (Optional) Edit the config file located in **`main/config.cfg`** to suit your needs, you can change server slots, server name, etc..
 1. (Optional) You can modify `docker-compose.yml` in order to change some parameters.
    - in the **`ports`** directive, you can change the port of the server. (e.g, **`20010:28960/tcp`** means that the port will be **`20010`**)
    - in the **`command`** directive you can modify the execution parameters.
-1. (Optional) If you need to activate punkbuster:
-   1. a
 
 # Launch the server
 From the project root:
