@@ -28,38 +28,57 @@ fi
 # Crear carpeta main si no existe
 mkdir -p $main_folder
 
-# Verificar si se debe forzar la instalación del core
-if [ "$force" == "true" ]; then
-    echo "Forcing installation and download..."
+
+# Verifica si el core esta instalado. O si force es true.
+if [ ! -f "$installation_info_file" -o "$force" == "true"  ]; then
+
+    # If installing core, removes any installed version
+    #if [ "$force" == "true" ]; then
+        echo "Removing core & any installed version"
+
+        rm -rf main/pak*
+        rm -rf main/loc*
+        rm -rf cod_lnxded
+        rm -rf installation_info.txt
+    #fi
+
     echo "Downloading core files..."
     wget -q --show-progress $core_url -O core.zip
+
+    echo "Installing core files..."
     unzip -oq core.zip && cp core/* main/
+
+    # Removing remaining .zip
     rm -rf core core.zip
+
     echo "Core installed" > "$installation_info_file"
 else
-    # Solo descargar el core si no está instalado
-    if [ ! -f "$installation_info_file" ]; then
-        echo "Downloading core files..."
-        wget -q --show-progress $core_url -O core.zip
-        unzip -oq core.zip && cp core/* main/
-        rm -rf core core.zip
-        echo "Core installed" > "$installation_info_file"
-    fi
+    echo "Core is already installed."
 fi
+
+
+
 
 # Verificar si la versión está instalada
 if [ "$force" == "true" ] || ( [ -f "$installation_info_file" ] && ! grep -q "Version $version installed" "$installation_info_file" ); then
-    echo "Forcing download of version ${version} files..."
+#    # Removes any existing version.
+#    rm -rf main/pak*
+#    rm -rf main/loc*
+
+    echo "Downloading files of version ${version}..."
     wget -q --show-progress $version_url -O ${version}.zip
 
-    if [ -f "${version}.zip" ]; then
-        echo "Installing base files of version ${version}"
-        unzip -oq ${version}.zip && cp ${version}/* main/
-        rm -rf ${version}*
-        sed -i "/^Version/c\Version $version installed" "$installation_info_file"
-    else
-        echo "Error downloading version ${version}."
-    fi
+    echo "Installing base files of version ${version}"
+    sudo unzip -oq ${version}.zip && cp -r ${version}/* ./ && sudo rm -r ${version} && sudo rm ${version}.zip
+
+    chmod +x cod_lnxded
+
+    #unzip -oq ${version}.zip && cp -r ${version}/* main/ && cp main/cod_lnxded cod_lnxded
+    #chmod +x cod_lnxded
+    #sudo cp -r 1.5/* .
+    #rm -rf ${version}*
+
+    sed -i "/^Version/c\Version $version installed" "$installation_info_file"
 else
     echo "Version $version is already installed."
 fi
