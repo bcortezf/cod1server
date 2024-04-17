@@ -69,7 +69,7 @@ if [ "$force" == "true" ] || ( [ -f "$installation_info_file" ] && ! grep -q "Ve
     wget -q --show-progress $version_url -O ${version}.zip
 
     echo "Installing base files of version ${version}"
-    sudo unzip -oq ${version}.zip && cp -r ${version}/* ./ && sudo rm -r ${version} && sudo rm ${version}.zip
+    unzip -oq ${version}.zip && cp -r ${version}/* ./ && rm -r ${version} && rm ${version}.zip
 
     chmod +x cod_lnxded
 
