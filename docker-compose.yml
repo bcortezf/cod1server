@@ -9,18 +9,12 @@ services:
     #container_name: cod1_server
     restart: unless-stopped
     ports:
-      #- "20501:20500/udp"
-      #- "20511:20510/udp"
-      - "20020:28960/tcp"
-      - "20020:28960/udp"
+      - "20500:20500/udp"
+      - "20510:20510/udp"
+      - "20010:28960/tcp"
+      - "20010:28960/udp"
     command: [
-        "/data/myserver/cod_lnxded", # DONT CHANGE THIS
-#       "+set fs_game callofdutychile",
-#       "+set sv_pam '1'",
-#       "+set pam_mode 'cal'",
-#       "+set sv_punkbuster '1'",
-#       "+set dedicated '2'",
-#       "+set sv_pure '1'",
+        "./cod_lnxded", # DONT CHANGE THIS
         "+set net_ip localhost", # DONT CHANGE THIS
         "+set net_port 28960", # DONT CHANGE THIS
         "+exec myserver.cfg",
